@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\LampController;
 use App\Http\Controllers\Api\SensorLogController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\DeviceController;
+use App\Http\Controllers\Api\TemperatureController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +23,7 @@ use App\Http\Controllers\Api\DeviceController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 
 
 //Route Auth
@@ -79,3 +81,11 @@ Route::prefix('v1/devices')->name('devices.')->group(function () {
     Route::delete('/{code}', [DeviceController::class, 'destroy'])->name('delete');
 });
 
+//Route Temperature
+//mengambil data temperature GET
+//Route butuh 2 parameter/ Argumen
+// 1. URL -> http://127.0.0.1:8000/api/v1/temperature 
+// 2. Lokasi file controller -> []
+
+Route::get('v1/temperature', [TemperatureController::class, 'getTemperature']);
+Route::post('v1/temperature', [TemperatureController::class, 'insertTemperature']);
